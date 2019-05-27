@@ -32,7 +32,7 @@ namespace WpfVideoLoopback
         {
             InitializeComponent();
 
-            videoplayer.Source = new Uri("C://video.mp4");
+            videoplayer.Source = new Uri("C://video.mp4");  //put the video file path you have
             InitializedIdleTimerEvent();
         }
 

@@ -5,17 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfVideoLoopback"
         mc:Ignorable="d"
-        Background="#9C9164"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Grid x:Name="Grid1" Background="Green" Visibility="Visible">
+        <Grid x:Name="Grid1" Background="#9C9164" Visibility="Visible">
             <Label x:Name="lblCount"></Label>
+
+            <Label x:Name="timeCounter"></Label>
 
             <Button x:Name="button" Click="Button_Click" Margin="147,146,436,232">Click Me</Button>
 
         </Grid>
 
-        <Grid x:Name="Grid2" Background="Black" Visibility="Collapsed">
+        <Grid x:Name="Grid2" Visibility="Collapsed">
             <MediaElement 
                 ScrubbingEnabled="True"
                 Name="videoplayer" 
@@ -24,10 +25,6 @@
                 LoadedBehavior="Manual"
                 MediaEnded="Videoplayer_MediaEnded"                 
                 />
-
-            <Label Content="Idle Event" Foreground="White" FontSize="23"></Label>
-
         </Grid>
-
     </Grid>
 </Window>
