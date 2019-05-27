@@ -1,0 +1,15 @@
+C:\Users\dedav\source\repos\WpfVideoLoopback\WpfVideoLoopback\bin\Debug\WpfVideoLoopback.exe.config
+C:\Users\dedav\source\repos\WpfVideoLoopback\WpfVideoLoopback\bin\Debug\WpfVideoLoopback.exe
+C:\Users\dedav\source\repos\WpfVideoLoopback\WpfVideoLoopback\bin\Debug\WpfVideoLoopback.pdb
+C:\Users\dedav\source\repos\WpfVideoLoopback\WpfVideoLoopback\obj\Debug\WpfVideoLoopback.csprojAssemblyReference.cache
+C:\Users\dedav\source\repos\WpfVideoLoopback\WpfVideoLoopback\obj\Debug\MainWindow.g.cs
+C:\Users\dedav\source\repos\WpfVideoLoopback\WpfVideoLoopback\obj\Debug\App.g.cs
+C:\Users\dedav\source\repos\WpfVideoLoopback\WpfVideoLoopback\obj\Debug\WpfVideoLoopback_MarkupCompile.cache
+C:\Users\dedav\source\repos\WpfVideoLoopback\WpfVideoLoopback\obj\Debug\WpfVideoLoopback_MarkupCompile.lref
+C:\Users\dedav\source\repos\WpfVideoLoopback\WpfVideoLoopback\obj\Debug\MainWindow.baml
+C:\Users\dedav\source\repos\WpfVideoLoopback\WpfVideoLoopback\obj\Debug\WpfVideoLoopback.g.resources
+C:\Users\dedav\source\repos\WpfVideoLoopback\WpfVideoLoopback\obj\Debug\WpfVideoLoopback.Properties.Resources.resources
+C:\Users\dedav\source\repos\WpfVideoLoopback\WpfVideoLoopback\obj\Debug\WpfVideoLoopback.csproj.GenerateResource.cache
+C:\Users\dedav\source\repos\WpfVideoLoopback\WpfVideoLoopback\obj\Debug\WpfVideoLoopback.csproj.CoreCompileInputs.cache
+C:\Users\dedav\source\repos\WpfVideoLoopback\WpfVideoLoopback\obj\Debug\WpfVideoLoopback.exe
+C:\Users\dedav\source\repos\WpfVideoLoopback\WpfVideoLoopback\obj\Debug\WpfVideoLoopback.pdb

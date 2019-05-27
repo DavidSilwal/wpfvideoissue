@@ -1,0 +1,33 @@
+﻿<Window x:Class="WpfVideoLoopback.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfVideoLoopback"
+        mc:Ignorable="d"
+        Background="#9C9164"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid x:Name="Grid1" Background="Green" Visibility="Visible">
+            <Label x:Name="lblCount"></Label>
+
+            <Button x:Name="button" Click="Button_Click" Margin="147,146,436,232">Click Me</Button>
+
+        </Grid>
+
+        <Grid x:Name="Grid2" Background="Black" Visibility="Collapsed">
+            <MediaElement 
+                ScrubbingEnabled="True"
+                Name="videoplayer" 
+                UnloadedBehavior="Manual"
+                Unloaded="Videoplayer_Unloaded"                 
+                LoadedBehavior="Manual"
+                MediaEnded="Videoplayer_MediaEnded"                 
+                />
+
+            <Label Content="Idle Event" Foreground="White" FontSize="23"></Label>
+
+        </Grid>
+
+    </Grid>
+</Window>
