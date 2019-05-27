@@ -57,7 +57,7 @@ namespace WpfVideoLoopback
 
             await System.Windows.Application.Current.Dispatcher.InvokeAsync(new Action(() =>
             {
-                Grid1.Visibility = Visibility.Collapsed;
+                Grid1.Visibility = Visibility.Hidden;
                 videoplayer.Play();
                 Grid2.Visibility = Visibility.Visible;
             }));
@@ -72,8 +72,7 @@ namespace WpfVideoLoopback
                 if (e.StagingItem.Input is System.Windows.Input.MouseEventArgs)
                 {
                     var mouseEventArgs = (System.Windows.Input.MouseEventArgs)e.StagingItem.Input;
-
-
+                    
                     if (!(
                         mouseEventArgs.LeftButton == MouseButtonState.Pressed ||
                         mouseEventArgs.RightButton == MouseButtonState.Pressed ||
@@ -93,7 +92,7 @@ namespace WpfVideoLoopback
                     videoplayer.Stop();
                     Grid1.Visibility = Visibility.Visible;
                     
-                    Grid2.Visibility = Visibility.Collapsed;
+                    Grid2.Visibility = Visibility.Hidden;
                 }));
 
                 _activityTimer.Stop();

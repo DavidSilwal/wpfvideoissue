@@ -9,14 +9,11 @@
     <Grid>
         <Grid x:Name="Grid1" Background="#9C9164" Visibility="Visible">
             <Label x:Name="lblCount"></Label>
-
-            <Label x:Name="timeCounter"></Label>
-
             <Button x:Name="button" Click="Button_Click" Margin="147,146,436,232">Click Me</Button>
 
         </Grid>
 
-        <Grid x:Name="Grid2" Visibility="Collapsed">
+        <Grid x:Name="Grid2" Visibility="Hidden">
             <MediaElement 
                 ScrubbingEnabled="True"
                 Name="videoplayer" 
