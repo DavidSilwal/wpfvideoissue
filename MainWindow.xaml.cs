@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
@@ -44,6 +45,11 @@ namespace WpfVideoLoopback
             _inactiveMousePosition = Mouse.GetPosition(this);
             // set UI on inactivity
 
+            if (Process.GetProcessesByName("").Length > 0) //put the processname
+            {
+                return;
+            }
+
             await Application.Current.Dispatcher.InvokeAsync(new Action(() =>
             {
                 Grid1.Visibility = Visibility.Hidden;
@@ -70,7 +76,7 @@ namespace WpfVideoLoopback
             {
                 if (e.StagingItem.Input is MouseEventArgs)
                 {
-                    var mouseEventArgs = (MouseEventArgs)e.StagingItem.Input;                                      
+                    var mouseEventArgs = (MouseEventArgs)e.StagingItem.Input;
 
                     if (!(
                            mouseEventArgs.LeftButton == MouseButtonState.Pressed
@@ -85,6 +91,10 @@ namespace WpfVideoLoopback
                     }
                 }
 
+                if (Process.GetProcessesByName("").Length > 0) //put the processname
+                {
+                    return;
+                }
                 // set UI on activity
                 await Application.Current.Dispatcher.InvokeAsync(new Action(() =>
                 {
