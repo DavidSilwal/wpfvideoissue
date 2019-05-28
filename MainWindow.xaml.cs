@@ -93,6 +93,21 @@ namespace WpfVideoLoopback
 
                 if (Process.GetProcessesByName("").Length > 0) //put the processname
                 {
+                    //just for validate, need to refactor.
+                    // i think the code will be like that, 
+                    
+
+                    await Application.Current.Dispatcher.InvokeAsync(new Action(() =>
+                    {
+                        videoplayer.Stop();
+                        Grid1.Visibility = Visibility.Visible;
+
+                        Grid2.Visibility = Visibility.Hidden;
+                    }));
+
+                    _activityTimer.Stop();
+                    _activityTimer.Start();
+
                     return;
                 }
                 // set UI on activity
