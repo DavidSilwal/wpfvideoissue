@@ -44,6 +44,9 @@ namespace WpfVideoLoopback
                 {
                     await Application.Current.Dispatcher.InvokeAsync(new Action(() =>
                     {
+                        WindowState = WindowState.Normal;
+                        WindowStyle = WindowStyle.SingleBorderWindow;
+
                         videoplayer.Stop();
                         Grid1.Visibility = Visibility.Visible;
 
@@ -85,6 +88,10 @@ namespace WpfVideoLoopback
             await Application.Current.Dispatcher.InvokeAsync(new Action(() =>
             {
                 Grid1.Visibility = Visibility.Hidden;
+
+                WindowState = WindowState.Maximized;
+                WindowStyle = WindowStyle.None;
+
                 videoplayer.Play();
                 Grid2.Visibility = Visibility.Visible;
             }));
@@ -128,6 +135,9 @@ namespace WpfVideoLoopback
                 // set UI on activity
                 await Application.Current.Dispatcher.InvokeAsync(new Action(() =>
                 {
+                    WindowState = WindowState.Normal;
+                    WindowStyle = WindowStyle.SingleBorderWindow;
+
                     videoplayer.Stop();
                     Grid1.Visibility = Visibility.Visible;
 
