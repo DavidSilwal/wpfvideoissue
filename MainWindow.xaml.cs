@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace WpfVideoLoopback
@@ -24,7 +13,7 @@ namespace WpfVideoLoopback
         private DispatcherTimer _activityTimer;
         private Point _inactiveMousePosition = new Point(0, 0);
 
-        private const int _idleTime = 5;
+        private const int _idleTime = 2;
 
         private static int increment;
 
@@ -55,7 +44,7 @@ namespace WpfVideoLoopback
             _inactiveMousePosition = Mouse.GetPosition(this);
             // set UI on inactivity
 
-            await System.Windows.Application.Current.Dispatcher.InvokeAsync(new Action(() =>
+            await Application.Current.Dispatcher.InvokeAsync(new Action(() =>
             {
                 Grid1.Visibility = Visibility.Hidden;
                 videoplayer.Play();
@@ -67,19 +56,29 @@ namespace WpfVideoLoopback
         {
             var inputEventArgs = e.StagingItem.Input;
 
-            if (inputEventArgs is System.Windows.Input.MouseEventArgs || inputEventArgs is KeyboardEventArgs)
+            switch (inputEventArgs.RoutedEvent.Name)
             {
-                if (e.StagingItem.Input is System.Windows.Input.MouseEventArgs)
+                case "PreviewGotKeyboardFocus":
+                case "PreviewKeyboardInputProviderAcquireFocus":
+                case "KeyboardInputProviderAcquireFocus":
+                case "LostKeyboardFocus":
+                case "GotKeyboardFocus":
+                    return;
+            }
+
+            if (inputEventArgs is MouseEventArgs || inputEventArgs is KeyboardEventArgs)
+            {
+                if (e.StagingItem.Input is MouseEventArgs)
                 {
-                    var mouseEventArgs = (System.Windows.Input.MouseEventArgs)e.StagingItem.Input;
-                    
+                    var mouseEventArgs = (MouseEventArgs)e.StagingItem.Input;                                      
+
                     if (!(
-                        mouseEventArgs.LeftButton == MouseButtonState.Pressed ||
-                        mouseEventArgs.RightButton == MouseButtonState.Pressed ||
-                        mouseEventArgs.MiddleButton == MouseButtonState.Pressed ||
-                        mouseEventArgs.XButton1 == MouseButtonState.Pressed ||
-                        mouseEventArgs.XButton2 == MouseButtonState.Pressed
-                        || _inactiveMousePosition != mouseEventArgs.GetPosition(this)
+                           mouseEventArgs.LeftButton == MouseButtonState.Pressed
+                        || mouseEventArgs.RightButton == MouseButtonState.Pressed
+                        || mouseEventArgs.MiddleButton == MouseButtonState.Pressed
+                        || mouseEventArgs.XButton1 == MouseButtonState.Pressed
+                        || mouseEventArgs.XButton2 == MouseButtonState.Pressed
+                        //|| _inactiveMousePosition != mouseEventArgs.GetPosition(this)
                         ))
                     {
                         return;
@@ -87,11 +86,11 @@ namespace WpfVideoLoopback
                 }
 
                 // set UI on activity
-                await System.Windows.Application.Current.Dispatcher.InvokeAsync(new Action(() =>
+                await Application.Current.Dispatcher.InvokeAsync(new Action(() =>
                 {
                     videoplayer.Stop();
                     Grid1.Visibility = Visibility.Visible;
-                    
+
                     Grid2.Visibility = Visibility.Hidden;
                 }));
 
@@ -109,13 +108,13 @@ namespace WpfVideoLoopback
         private void Videoplayer_Unloaded(object sender, RoutedEventArgs e)
         {
             videoplayer.Position = TimeSpan.Zero;
-            videoplayer.Play();
+            videoplayer.Stop();
         }
 
         private void Videoplayer_MediaEnded(object sender, RoutedEventArgs e)
         {
             videoplayer.Position = TimeSpan.Zero;
-            videoplayer.Play();
+            videoplayer.Stop();
         }
     }
 }
