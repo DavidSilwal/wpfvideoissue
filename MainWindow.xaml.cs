@@ -18,12 +18,43 @@ namespace WpfVideoLoopback
 
         private static int increment;
 
+        private static readonly DispatcherTimer dispatcherTimer = new DispatcherTimer();
+
         public MainWindow()
         {
             InitializeComponent();
 
             videoplayer.Source = new Uri("C://video.mp4");  //put the video file path you have
             InitializedIdleTimerEvent();
+
+            dispatcherTimer.Tick += GetStatus;
+
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+            dispatcherTimer.Start();
+
+        }
+
+        private async void GetStatus(object sender, EventArgs e)
+        {
+            if (Process.GetProcessesByName("notepad").Length > 0) //for the demonstration , i put notepad
+            {
+                //just for validate, need to refactor.
+
+                if (Grid2.Visibility == Visibility.Visible)
+                {
+                    await Application.Current.Dispatcher.InvokeAsync(new Action(() =>
+                    {
+                        videoplayer.Stop();
+                        Grid1.Visibility = Visibility.Visible;
+
+                        Grid2.Visibility = Visibility.Hidden;
+                    }));
+
+                    _activityTimer.Stop();
+                    _activityTimer.Start();
+                }
+
+            }
         }
 
         private void InitializedIdleTimerEvent()
@@ -49,6 +80,7 @@ namespace WpfVideoLoopback
             {
                 return;
             }
+            Debug.WriteLine(DateTime.Now.ToString("HH:mm:ss.fffffff") + " Inactivity");
 
             await Application.Current.Dispatcher.InvokeAsync(new Action(() =>
             {
@@ -90,27 +122,9 @@ namespace WpfVideoLoopback
                         return;
                     }
                 }
-
-                if (Process.GetProcessesByName("notepad").Length > 0) //for the demonstration , i put notepad
-                {
-                    //just for validate, need to refactor.
-                    // i think the code will be like that, 
-                    
-
-                    await Application.Current.Dispatcher.InvokeAsync(new Action(() =>
-                    {
-                        videoplayer.Stop();
-                        Grid1.Visibility = Visibility.Visible;
-
-                        Grid2.Visibility = Visibility.Hidden;
-                    }));
-
-                    _activityTimer.Stop();
-                    _activityTimer.Start();
-
-                    return;
-                }
-
+                
+                Debug.WriteLine(DateTime.Now.ToString("HH:mm:ss.fffffff") + " Activity " + inputEventArgs.RoutedEvent.ToString());
+                
                 // set UI on activity
                 await Application.Current.Dispatcher.InvokeAsync(new Action(() =>
                 {
@@ -124,6 +138,7 @@ namespace WpfVideoLoopback
                 _activityTimer.Start();
             }
         }
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
