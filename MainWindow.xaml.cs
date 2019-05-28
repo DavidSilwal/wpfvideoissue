@@ -45,7 +45,7 @@ namespace WpfVideoLoopback
             _inactiveMousePosition = Mouse.GetPosition(this);
             // set UI on inactivity
 
-            if (Process.GetProcessesByName("").Length > 0) //put the processname
+            if (Process.GetProcessesByName("notepad").Length > 0) //for the demonstration , i put notepad      
             {
                 return;
             }
@@ -91,7 +91,7 @@ namespace WpfVideoLoopback
                     }
                 }
 
-                if (Process.GetProcessesByName("").Length > 0) //put the processname
+                if (Process.GetProcessesByName("notepad").Length > 0) //for the demonstration , i put notepad
                 {
                     //just for validate, need to refactor.
                     // i think the code will be like that, 
@@ -110,6 +110,7 @@ namespace WpfVideoLoopback
 
                     return;
                 }
+
                 // set UI on activity
                 await Application.Current.Dispatcher.InvokeAsync(new Action(() =>
                 {
